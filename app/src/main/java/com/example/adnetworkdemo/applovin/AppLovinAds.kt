@@ -26,9 +26,9 @@ class AppLovinAds {
 
        // private lateinit var nativeAdLayout: FrameLayout
 
-        fun loadNativeAd(context: Context, nativeAdLayout: FrameLayout) {
+        fun loadNativeAd(adId: String, context: Context, nativeAdLayout: FrameLayout) {
            // nativeAdLayout = findViewById(R.id.native_ad_layout)
-            nativeAdLoader = MaxNativeAdLoader(context.getString(R.string.native_test_id), context)
+            nativeAdLoader = MaxNativeAdLoader(adId, context)
             nativeAdLoader.setNativeAdListener(object : MaxNativeAdListener() {
                 override fun onNativeAdLoaded(nativeAdView: MaxNativeAdView?, ad: MaxAd) {
                     // Cleanup any pre-existing native ad to prevent memory leaks.
@@ -120,8 +120,8 @@ class AppLovinAds {
             nativeAdLoader.loadAd(nativeAdView)
         }*/
 
-        fun loadInterstitialAd(context: Context, activity: Activity) {
-            interstitialAd = MaxInterstitialAd(context.getString(R.string.inter_test_id), activity )
+        fun loadInterstitialAd(adId: String, context: Context, activity: Activity) {
+            interstitialAd = MaxInterstitialAd(adId, activity )
             // Load the first ad
             interstitialAd.loadAd()
         }

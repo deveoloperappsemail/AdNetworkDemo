@@ -17,14 +17,14 @@ class MainActivity : AppCompatActivity() {
 
         //Testing
 
-        val adFrame = findViewById<FrameLayout>(R.id.native_ad_layout)
+        /*val adFrame = findViewById<FrameLayout>(R.id.native_ad_layout)
         AppLovinAds.loadNativeAd(this, adFrame)
 
         AppLovinAds.loadInterstitialAd(this, this)
         val button = findViewById<Button>(R.id.button)
         button.setOnClickListener {
             AppLovinAds.showAd(this, Intent(this, NextActivity::class.java))
-        }
+        }*/
 
     }
 }
