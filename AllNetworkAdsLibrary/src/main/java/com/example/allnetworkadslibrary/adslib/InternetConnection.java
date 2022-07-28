@@ -1,4 +1,4 @@
-package com.example.adnetworkdemo.adslib;
+package com.example.allnetworkadslibrary.adslib;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

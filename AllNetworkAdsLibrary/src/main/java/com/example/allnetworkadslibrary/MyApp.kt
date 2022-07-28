@@ -1,4 +1,4 @@
-package com.example.adnetworkdemo
+package com.example.allnetworkadslibrary
 
 import android.app.Application
 import com.applovin.sdk.AppLovinSdk

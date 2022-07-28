@@ -1,4 +1,4 @@
-package com.example.adnetworkdemo.adslib;
+package com.example.allnetworkadslibrary.adslib;
 
 public class InHouseModel {
     private final String adsTitle;

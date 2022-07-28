@@ -1,4 +1,4 @@
-package com.example.adnetworkdemo.applovin
+package com.example.allnetworkadslibrary.applovin
 
 import android.app.Activity
 import android.content.Context
@@ -12,7 +12,6 @@ import com.applovin.mediation.ads.MaxInterstitialAd
 import com.applovin.mediation.nativeAds.MaxNativeAdListener
 import com.applovin.mediation.nativeAds.MaxNativeAdLoader
 import com.applovin.mediation.nativeAds.MaxNativeAdView
-import com.example.adnetworkdemo.R
 import java.util.concurrent.TimeUnit
 import kotlin.math.pow
 

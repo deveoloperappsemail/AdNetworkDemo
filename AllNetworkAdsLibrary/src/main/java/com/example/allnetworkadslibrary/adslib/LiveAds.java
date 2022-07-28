@@ -1,4 +1,4 @@
-package com.example.adnetworkdemo.adslib;
+package com.example.allnetworkadslibrary.adslib;
 
 import android.content.Context;
 import android.util.Log;
@@ -9,7 +9,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.adnetworkdemo.R;
+import com.example.allnetworkadslibrary.R;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
