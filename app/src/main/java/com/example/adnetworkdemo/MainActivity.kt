@@ -15,6 +15,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //Testing
+
         val adFrame = findViewById<FrameLayout>(R.id.native_ad_layout)
         AppLovinAds.loadNativeAd(this, adFrame)
 
