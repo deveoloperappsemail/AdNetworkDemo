@@ -17,6 +17,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //Example of library usage
+
         val button = findViewById<Button>(R.id.button)
         val adFrame = findViewById<FrameLayout>(R.id.native_ad_layout)
 
