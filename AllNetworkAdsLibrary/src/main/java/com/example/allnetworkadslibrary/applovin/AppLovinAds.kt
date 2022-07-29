@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Handler
+import android.util.Log
 import android.widget.FrameLayout
 import com.applovin.mediation.MaxAd
 import com.applovin.mediation.MaxAdListener
@@ -12,6 +13,8 @@ import com.applovin.mediation.ads.MaxInterstitialAd
 import com.applovin.mediation.nativeAds.MaxNativeAdListener
 import com.applovin.mediation.nativeAds.MaxNativeAdLoader
 import com.applovin.mediation.nativeAds.MaxNativeAdView
+import com.example.allnetworkadslibrary.adslib.Constants
+import com.example.allnetworkadslibrary.adslib.SharedPrefUtils
 import java.util.concurrent.TimeUnit
 import kotlin.math.pow
 
@@ -25,8 +28,10 @@ class AppLovinAds {
 
        // private lateinit var nativeAdLayout: FrameLayout
 
-        fun loadNativeAd(adId: String, context: Context, nativeAdLayout: FrameLayout) {
+        fun loadNativeAd(context: Context, nativeAdLayout: FrameLayout) {
            // nativeAdLayout = findViewById(R.id.native_ad_layout)
+            val adId = SharedPrefUtils.getStringData(context, Constants.APPLOVIN_NATIVE)
+            Log.i("MyLog", "adid: "+adId)
             nativeAdLoader = MaxNativeAdLoader(adId, context)
             nativeAdLoader.setNativeAdListener(object : MaxNativeAdListener() {
                 override fun onNativeAdLoaded(nativeAdView: MaxNativeAdView?, ad: MaxAd) {
@@ -119,7 +124,8 @@ class AppLovinAds {
             nativeAdLoader.loadAd(nativeAdView)
         }*/
 
-        fun loadInterstitialAd(adId: String, context: Context, activity: Activity) {
+        fun loadInterstitialAd(context: Context, activity: Activity) {
+            val adId = SharedPrefUtils.getStringData(context, Constants.APPLOVIN_INTER)
             interstitialAd = MaxInterstitialAd(adId, activity )
             // Load the first ad
             interstitialAd.loadAd()

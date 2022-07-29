@@ -12,13 +12,21 @@ import com.example.allnetworkadslibrary.R;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class TestAds {
-    public static void getTestAds(Context context) {
+    public static void getTestAds(Context context, boolean showAdmob, String packageName) {
         if (InternetConnection.checkConnection(context)) {
-            fetchData(context);
+            if(showAdmob)
+                fetchData(context);
+            else
+                fetchApplovin(context, packageName);
         } else {
             storeAds(context);
         }
+
+        SharedPrefUtils.saveData(context, Constants.SHOW_ADMOB, showAdmob);
     }
 
     private static void storeAds(Context context) {
@@ -45,9 +53,25 @@ public class TestAds {
         String openad = SharedPrefUtils.getStringData(context, Constants.OPEN_AD);
         if (openad == null) {
             SharedPrefUtils.saveData(context, Constants.OPEN_AD, "no");
-
         }
 
+        String applovinInter = SharedPrefUtils.getStringData(context, Constants.APPLOVIN_INTER);
+        if (applovinInter == null) {
+            SharedPrefUtils.saveData(context, Constants.APPLOVIN_INTER, "no");
+        }
+        String applovinNative = SharedPrefUtils.getStringData(context, Constants.APPLOVIN_NATIVE);
+        if (applovinNative == null) {
+            SharedPrefUtils.saveData(context, Constants.APPLOVIN_NATIVE, "no");
+        }
+        String applovinBanner = SharedPrefUtils.getStringData(context, Constants.APPLOVIN_BANNER);
+        if (applovinBanner == null) {
+            SharedPrefUtils.saveData(context, Constants.APPLOVIN_BANNER, "no");
+        }
+
+        String adCounter = SharedPrefUtils.getStringData(context, Constants.AD_COUNTER);
+        if (adCounter == null) {
+            SharedPrefUtils.saveData(context, Constants.AD_COUNTER, "0");
+        }
     }
 
     private static void fetchData(Context context) {
@@ -83,6 +107,49 @@ public class TestAds {
                     }
                 }
         );
+
+// add it to the RequestQueue
+        queue.add(getRequest);
+    }
+
+    private static void fetchApplovin(Context context, String packageName) {
+        RequestQueue queue = Volley.newRequestQueue(context); // this = context
+
+        StringRequest getRequest = new StringRequest(Request.Method.POST, context.getString(R.string.base_url) + "fetch_applovin_test_ads.php",
+                response -> {
+                    // display response
+                    Log.d("Response1", response.toString());
+                    try {
+                        JSONArray jsonArray = new JSONArray(response);
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            SharedPrefUtils.saveData(context, Constants.APPLOVIN_INTER, jsonObject.getString("inter"));
+                            SharedPrefUtils.saveData(context, Constants.APPLOVIN_NATIVE, jsonObject.getString("native"));
+                            SharedPrefUtils.saveData(context, Constants.APPLOVIN_BANNER, jsonObject.getString("banner"));
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        storeAds(context);
+                    }
+                },
+                error -> {
+                    try {
+                        Log.d("Response1", "Error.Response" + error.getMessage());
+                        storeAds(context);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        storeAds(context);
+                    }
+                }
+        ){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("packagename", packageName);
+
+                return params;
+            }
+        };
 
 // add it to the RequestQueue
         queue.add(getRequest);

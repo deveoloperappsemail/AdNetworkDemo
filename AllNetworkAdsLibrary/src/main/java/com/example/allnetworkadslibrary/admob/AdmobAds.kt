@@ -7,6 +7,7 @@ import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.widget.*
+import com.example.allnetworkadslibrary.Ads
 import com.example.allnetworkadslibrary.R;
 import com.example.allnetworkadslibrary.adslib.Constants
 import com.example.allnetworkadslibrary.adslib.SharedPrefUtils
@@ -19,9 +20,7 @@ import com.google.android.gms.ads.nativead.NativeAdOptions
 import com.google.android.gms.ads.nativead.NativeAdView
 
 class AdmobAds {
-
     companion object {
-
         var mInterstitialAd: InterstitialAd? = null
         private var nativeAd1: NativeAd? = null
 

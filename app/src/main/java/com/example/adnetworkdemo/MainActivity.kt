@@ -1,13 +1,15 @@
 package com.example.adnetworkdemo
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.FrameLayout
-import com.example.allnetworkadslibrary.admob.AdmobAds
+import androidx.appcompat.app.AppCompatActivity
+import com.example.allnetworkadslibrary.Ads
+import com.example.allnetworkadslibrary.adslib.Constants
+import com.example.allnetworkadslibrary.adslib.LiveAds
+import com.example.allnetworkadslibrary.adslib.SharedPrefUtils
 import com.example.allnetworkadslibrary.adslib.TestAds
-import com.example.allnetworkadslibrary.applovin.AppLovinAds
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,8 +20,26 @@ class MainActivity : AppCompatActivity() {
         val button = findViewById<Button>(R.id.button)
         val adFrame = findViewById<FrameLayout>(R.id.native_ad_layout)
 
+        /*to show admob ads save true
+        to show applovin ads save false*/
+        val showAdmob = false
+        TestAds.getTestAds(this, showAdmob, packageName)
+
+        //LiveAds.getLiveAds(this, packageName)
+
+        //pass applovin ad id
+        Ads.loadNative(this, this, adFrame)
+        Ads.loadInter(this, this)
+
+        button.setOnClickListener {
+            val intent = Intent(this, NextActivity::class.java)
+            Ads.showInter(this, this, intent)
+        }
+    }
+
+    private fun oldCode() {
         //Admob ads testing
-      /*  TestAds.getTestAds(this)
+        /*TestAds.getTestAds(this)
         AdmobAds.refreshAd(this, this, adFrame)
         AdmobAds.loadAdmobInters(this)
         button.setOnClickListener {
@@ -27,13 +47,12 @@ class MainActivity : AppCompatActivity() {
         }*/
 
         //Applovin ads testing
-        AppLovinAds.loadNativeAd(getString(R.string.native_test_id),this, adFrame)
+        /*AppLovinAds.loadNativeAd(getString(R.string.native_test_id),this, adFrame)
 
         AppLovinAds.loadInterstitialAd(getString(R.string.inter_test_id), this, this)
 
         button.setOnClickListener {
             AppLovinAds.showAd(this, Intent(this, NextActivity::class.java))
-        }
-
+        }*/
     }
 }

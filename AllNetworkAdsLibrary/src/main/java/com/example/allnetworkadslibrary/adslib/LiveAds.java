@@ -51,7 +51,19 @@ public class LiveAds {
         String openad = SharedPrefUtils.getStringData(context, Constants.OPEN_AD);
         if (openad == null) {
             SharedPrefUtils.saveData(context, Constants.OPEN_AD, "no");
+        }
 
+        String applovinInter = SharedPrefUtils.getStringData(context, Constants.APPLOVIN_INTER);
+        if (applovinInter == null) {
+            SharedPrefUtils.saveData(context, Constants.APPLOVIN_INTER, "no");
+        }
+        String applovinNative = SharedPrefUtils.getStringData(context, Constants.APPLOVIN_NATIVE);
+        if (applovinNative == null) {
+            SharedPrefUtils.saveData(context, Constants.APPLOVIN_NATIVE, "no");
+        }
+        String applovinBanner = SharedPrefUtils.getStringData(context, Constants.APPLOVIN_BANNER);
+        if (applovinBanner == null) {
+            SharedPrefUtils.saveData(context, Constants.APPLOVIN_BANNER, "no");
         }
     }
 
@@ -72,7 +84,13 @@ public class LiveAds {
                                 SharedPrefUtils.saveData(context, Constants.BANNER, jsonObject.getString("banner"));
                                 SharedPrefUtils.saveData(context, Constants.NATIVE_AD, jsonObject.getString("native"));
                                 SharedPrefUtils.saveData(context, Constants.OPEN_AD, jsonObject.getString("openad"));
+
+                                SharedPrefUtils.saveData(context, Constants.APPLOVIN_INTER, jsonObject.getString("applovinInter"));
+                                SharedPrefUtils.saveData(context, Constants.APPLOVIN_NATIVE, jsonObject.getString("applovinNative"));
+                                SharedPrefUtils.saveData(context, Constants.APPLOVIN_BANNER, jsonObject.getString("applovinBanner"));
+
                                 SharedPrefUtils.saveData(context, Constants.AD_COUNTER, jsonObject.getString("intercounter"));
+                                SharedPrefUtils.saveData(context, Constants.SHOW_ADMOB, jsonObject.getBoolean("showAdmob"));
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
