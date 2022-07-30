@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
 
         //LiveAds.getLiveAds(this, packageName)
 
-        //pass applovin ad id
         Ads.loadNative(this, this, adFrame)
         Ads.loadInter(this, this)
 
